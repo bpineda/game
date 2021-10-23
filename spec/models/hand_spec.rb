@@ -7,11 +7,11 @@ RSpec.describe Hand, type: :model do
     round = Round.new
     hand = Hand.new
     hand.round = round
-    hand.cards << Card.new(suit: "spades", value: 5, numeric_value: 5)
-    hand.cards << Card.new(suit: "spades", value: 6, numeric_value: 6)
-    hand.cards << Card.new(suit: "spades", value: 8, numeric_value: 8)
-    hand.cards << Card.new(suit: "spades", value: 9, numeric_value: 9)
-    hand.cards << Card.new(suit: "clubs", value: 9, numeric_value: 9)
+    hand.cards << Card.new(suit: "spades", numeric_value: 5)
+    hand.cards << Card.new(suit: "spades", numeric_value: 6)
+    hand.cards << Card.new(suit: "spades", numeric_value: 8)
+    hand.cards << Card.new(suit: "spades", numeric_value: 9)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 9)
 
     expect(hand.getRank).to eq "One pair"
     expect(hand.getRankValue).to eq 100
@@ -22,11 +22,11 @@ RSpec.describe Hand, type: :model do
     round = Round.new
     hand = Hand.new
     hand.round = round
-    hand.cards << Card.new(suit: "spades", value: 5, numeric_value: 5)
-    hand.cards << Card.new(suit: "hearts", value: 8, numeric_value: 8)
-    hand.cards << Card.new(suit: "spades", value: 8, numeric_value: 8)
-    hand.cards << Card.new(suit: "spades", value: 9, numeric_value: 9)
-    hand.cards << Card.new(suit: "clubs", value: 9, numeric_value: 9)
+    hand.cards << Card.new(suit: "spades", numeric_value: 5)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 8)
+    hand.cards << Card.new(suit: "spades", numeric_value: 8)
+    hand.cards << Card.new(suit: "spades", numeric_value: 9)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 9)
 
     expect(hand.getRank).to eq "Two pairs"
     expect(hand.getRankValue).to eq 200
@@ -38,11 +38,11 @@ RSpec.describe Hand, type: :model do
     round = Round.new
     hand = Hand.new
     hand.round = round
-    hand.cards << Card.new(suit: "hearts", value: 6, numeric_value: 6)
-    hand.cards << Card.new(suit: "hearts", value: 4, numeric_value: 4)
-    hand.cards << Card.new(suit: "clubs", value: 5, numeric_value: 5)
-    hand.cards << Card.new(suit: "hearts", value: 3, numeric_value: 3)
-    hand.cards << Card.new(suit: "hearts", value: 2, numeric_value: 2)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 6)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 4)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 5)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 3)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 2)
 
     expect(hand.getRank).to eq "Straight"
     expect(hand.getRankValue).to eq 400
@@ -53,11 +53,11 @@ RSpec.describe Hand, type: :model do
     round = Round.new
     hand = Hand.new
     hand.round = round
-    hand.cards << Card.new(suit: "hearts", value: 6, numeric_value: 6)
-    hand.cards << Card.new(suit: "hearts", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "hearts", value: 8, numeric_value: 8)
-    hand.cards << Card.new(suit: "hearts", value: 13, numeric_value: 13)
-    hand.cards << Card.new(suit: "hearts", value: 4, numeric_value: 4)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 6)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 2)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 8)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 13)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 4)
 
     expect(hand.getRank).to eq "Flush"
     expect(hand.getRankValue).to eq 500
@@ -68,11 +68,11 @@ RSpec.describe Hand, type: :model do
     round = Round.new
     hand = Hand.new
     hand.round = round
-    hand.cards << Card.new(suit: "clubs", value: 6, numeric_value: 6)
-    hand.cards << Card.new(suit: "clubs", value: 4, numeric_value: 4)
-    hand.cards << Card.new(suit: "clubs", value: 5, numeric_value: 5)
-    hand.cards << Card.new(suit: "clubs", value: 3, numeric_value: 3)
-    hand.cards << Card.new(suit: "clubs", value: 2, numeric_value: 2)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 6)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 4)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 5)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 3)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 2)
 
     expect(hand.getRank).to eq "Straight Flush"
     expect(hand.getRankValue).to eq 800
@@ -83,11 +83,11 @@ RSpec.describe Hand, type: :model do
     round = Round.new
     hand = Hand.new
     hand.round = round
-    hand.cards << Card.new(suit: "clubs", value: 1, numeric_value: 1)
-    hand.cards << Card.new(suit: "clubs", value: 13, numeric_value: 13)
-    hand.cards << Card.new(suit: "clubs", value: 12, numeric_value: 12)
-    hand.cards << Card.new(suit: "clubs", value: 10, numeric_value: 10)
-    hand.cards << Card.new(suit: "clubs", value: 11, numeric_value: 11)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 1)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 13)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 12)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 10)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 11)
 
     expect(hand.getRank).to eq "Royal Flush"
     expect(hand.getRankValue).to eq 900
@@ -98,11 +98,11 @@ RSpec.describe Hand, type: :model do
     round = Round.new
     hand = Hand.new
     hand.round = round
-    hand.cards << Card.new(suit: "spades", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "clubs", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "diams", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "hearts", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "hearts", value: 3, numeric_value: 3)
+    hand.cards << Card.new(suit: "spades", numeric_value: 2)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 2)
+    hand.cards << Card.new(suit: "diams", numeric_value: 2)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 2)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 3)
 
     expect(hand.getRank).to eq "Four of a Kind"
     expect(hand.getRankValue).to eq 700
@@ -113,11 +113,11 @@ RSpec.describe Hand, type: :model do
     round = Round.new
     hand = Hand.new
     hand.round = round
-    hand.cards << Card.new(suit: "spades", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "clubs", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "diams", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "hearts", value: 4, numeric_value: 4)
-    hand.cards << Card.new(suit: "hearts", value: 3, numeric_value: 3)
+    hand.cards << Card.new(suit: "spades", numeric_value: 2)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 2)
+    hand.cards << Card.new(suit: "diams", numeric_value: 2)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 4)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 3)
 
     expect(hand.getRank).to eq "Three of a Kind"
     expect(hand.getRankValue).to eq 300
@@ -128,11 +128,11 @@ RSpec.describe Hand, type: :model do
     round = Round.new
     hand = Hand.new
     hand.round = round
-    hand.cards << Card.new(suit: "spades", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "clubs", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "diams", value: 2, numeric_value: 2)
-    hand.cards << Card.new(suit: "hearts", value: 3, numeric_value: 3)
-    hand.cards << Card.new(suit: "hearts", value: 3, numeric_value: 3)
+    hand.cards << Card.new(suit: "spades", numeric_value: 2)
+    hand.cards << Card.new(suit: "clubs", numeric_value: 2)
+    hand.cards << Card.new(suit: "diams", numeric_value: 2)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 3)
+    hand.cards << Card.new(suit: "hearts", numeric_value: 3)
 
     expect(hand.getRank).to eq "Full House"
     expect(hand.getRankValue).to eq 600
@@ -143,11 +143,11 @@ RSpec.describe Hand, type: :model do
     round = Round.new
     hand_high = Hand.new
     hand_high.round = round
-    hand_high.cards << Card.new(suit: "spades", value: 2, numeric_value: 2)
-    hand_high.cards << Card.new(suit: "clubs", value: 4, numeric_value: 4)
-    hand_high.cards << Card.new(suit: "diams", value: 6, numeric_value: 6)
-    hand_high.cards << Card.new(suit: "hearts", value: 8, numeric_value: 8)
-    hand_high.cards << Card.new(suit: "hearts", value: 3, numeric_value: 3)
+    hand_high.cards << Card.new(suit: "spades", numeric_value: 2)
+    hand_high.cards << Card.new(suit: "clubs", numeric_value: 4)
+    hand_high.cards << Card.new(suit: "diams", numeric_value: 6)
+    hand_high.cards << Card.new(suit: "hearts", numeric_value: 8)
+    hand_high.cards << Card.new(suit: "hearts", numeric_value: 3)
 
     expect(hand_high.getRank).to eq "High number"
     expect(hand_high.getRankValue).to eq 0

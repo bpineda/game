@@ -49,7 +49,7 @@ class Hand < ApplicationRecord
       @@rank_value = 100
       return "One pair" 
     end
-    @@rank_value = getHighValue
+    @@rank_value = 0
     "High number"
   end
 

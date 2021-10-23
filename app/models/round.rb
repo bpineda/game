@@ -5,12 +5,15 @@ class Round < ApplicationRecord
 
     round_meta_data = Hash.new
 
+    round_meta_data['arr_hands'] = []
     round_meta_data['card_numbers'] = []
     round_meta_data['2_of_a_kind'] = []
     round_meta_data['3_of_a_kind'] = []
     round_meta_data['4_of_a_kind'] = []
 
     first_hand = self.hands.first
+    round_meta_data['arr_hands'][0] = self.hands.first
+    round_meta_data['arr_hands'][0]['rank'] = round_meta_data['arr_hands'][0].getRank
     first_hand_rank = first_hand.getRank
     first_hand_pairs = first_hand.getpairValues
     first_hand_threes = first_hand.getThreesValues
@@ -45,11 +48,11 @@ class Round < ApplicationRecord
 
     # In case of a tie logic starts here:
 
-    if first_hand_rank == "High number"
+    if round_meta_data['arr_hands'][0]['rank'] == "High number"
       return getHighest round_meta_data['card_numbers']
     end
 
-    if first_hand_rank == "One pair" || first_hand_rank == "Two pairs"
+    if round_meta_data['arr_hands'][0]['rank'] == "One pair" || round_meta_data['arr_hands'][0]['rank'] == "Two pairs"
       if round_meta_data['2_of_a_kind'][0] != round_meta_data['2_of_a_kind'][1]
         return getHighest round_meta_data['2_of_a_kind']
       end
@@ -58,29 +61,29 @@ class Round < ApplicationRecord
       return getHighest round_meta_data['card_numbers']
     end
 
-    if first_hand_rank == "Three of a Kind"
+    if round_meta_data['arr_hands'][0]['rank'] == "Three of a Kind"
       if round_meta_data['3_of_a_kind'][0] != round_meta_data['3_of_a_kind'][1]
         return getHighest round_meta_data['3_of_a_kind']
       end
       return getHighest round_meta_data['card_numbers']
     end
 
-    if first_hand_rank == "Straight"
+    if round_meta_data['arr_hands'][0]['rank'] == "Straight"
       return getHighest round_meta_data['card_numbers']
     end
 
-    if first_hand_rank == "Flush"
+    if round_meta_data['arr_hands'][0]['rank'] == "Flush"
       return getHighest round_meta_data['card_numbers']
     end
 
-    if first_hand_rank == "Full House"
+    if round_meta_data['arr_hands'][0]['rank'] == "Full House"
       if round_meta_data['3_of_a_kind'][0] != round_meta_data['3_of_a_kind'][1]
         return getHighest round_meta_data['3_of_a_kind']
       end
       return getHighest round_meta_data['card_numbers']
     end
 
-    if first_hand_rank == "Four of a Kind"
+    if round_meta_data['arr_hands'][0]['rank'] == "Four of a Kind"
       if round_meta_data['4_of_a_kind'][0] != round_meta_data['4_of_a_kind'][1]
         return getHighest round_meta_data['4_of_a_kind']
       end
@@ -89,7 +92,7 @@ class Round < ApplicationRecord
     end
 
     # TODO: verify how the ace is handled
-    if first_hand_rank == "Straight Flush"
+    if round_meta_data['arr_hands'][0]['rank'] == "Straight Flush"
       return getHighest round_meta_data['card_numbers']
     end
 
