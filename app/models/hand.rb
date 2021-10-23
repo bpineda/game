@@ -56,8 +56,13 @@ class Hand < ApplicationRecord
   def getHighValue
     arr_values = get_numeric_values_array
     arr_values.sort!
-    puts arr_values.inspect
+    # puts arr_values.inspect
     arr_values.pop
+  end
+
+  def getSortedArray
+    arr_values = get_numeric_values_array
+    arr_values.sort!
   end
 
   def getRankValue
