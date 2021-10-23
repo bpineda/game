@@ -60,6 +60,13 @@ class Round < ApplicationRecord
       return getHighest arr_numeric_equivalents
     end
 
+    if first_hand_rank == "Full House"
+      if arr_numeric_threes[0] != arr_numeric_threes[1]
+        return getHighest arr_numeric_threes
+      end
+      return getHighest arr_numeric_equivalents
+    end
+
   end
 
   def getHighest sorted_array
