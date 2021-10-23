@@ -56,8 +56,6 @@ class Round < ApplicationRecord
       if round_meta_data['2_of_a_kind'][0] != round_meta_data['2_of_a_kind'][1]
         return getHighest round_meta_data['2_of_a_kind']
       end
-      # if the values are the same, according to the rules
-      # we go to the next highest number and so on
       return getHighest round_meta_data['card_numbers']
     end
 

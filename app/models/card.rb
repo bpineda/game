@@ -1,9 +1,6 @@
 class Card < ApplicationRecord
   belongs_to :hand
   def import( raw_data, hand )
-    self.value = raw_data[0]
-
-    # numeric_value = raw_data[0]
     case raw_data[0]
 
     when 'T'
@@ -42,7 +39,7 @@ class Card < ApplicationRecord
   end
 
   def memory_import( raw_data, hand )
-    self.value = raw_data[0]
+    # self.value = raw_data[0]
 
     # numeric_value = raw_data[0]
     case raw_data[0]

@@ -56,7 +56,6 @@ class Hand < ApplicationRecord
   def getHighValue
     arr_values = get_numeric_values_array
     arr_values.sort!
-    # puts arr_values.inspect
     arr_values.pop
   end
 
@@ -130,25 +129,8 @@ class Hand < ApplicationRecord
   end
 
   def is_straight?
-    # return false
     arr_values = get_numeric_values_array
-    # puts arr_values.inspect
     arr_values.sort!
-    # arr_values.reverse!
-    # puts arr_values.inspect
-    n = 0
-
-    # puts ((arr_values[4] - arr_values[3]))
-    # puts ((arr_values[4] - arr_values[3]) == 1)
-
-
-    # return false if ((arr_values[4] - arr_values[3]) != 1)
-    # return false if true
-
-    # puts "-"*100
-    # if ((arr_values[4] - arr_values[3]) == 1)
-    #   return false
-    # end
 
     if arr_values.include?(1)
       return true if arr_values.include?(2) && arr_values.include?(3) && arr_values.include?(4) && arr_values.include?(5)
@@ -160,24 +142,6 @@ class Hand < ApplicationRecord
     return false if (arr_values[2] - arr_values[1]) != 1
     return false if (arr_values[1] - arr_values[0]) != 1
 
-    # for i in arr_values do 
-    #   # puts n.to_s + " " + i.to_s
-    #   # puts arr_values[n]
-    #   # puts arr_values[n-1]
-    #   # puts (arr_values[n] - arr_values[n-1])
-    #   # puts "-"*100
-    #   if n != 0
-    #     puts "Different than zero"
-    #     puts "Operation Value"
-    #     puts (arr_values[n] - arr_values[n-1])
-    #     return false if (arr_values[n] - arr_values[n-1]) == 0
-    #   else
-    #     puts "equal to zero"
-    #   end
-    #   n = n + 1
-    #   end  
-    # end
-    # true
     true
   end
 
@@ -189,16 +153,8 @@ class Hand < ApplicationRecord
 
     return false unless has_same_suit?
 
-    # arr_values = []
-
-    # self.cards.each do | card |
-    #   # puts card.value
-    #   # puts card.numeric_value
-    #   arr_values.push card.numeric_value
-    # end
     arr_values = get_numeric_values_array
 
-    # puts arr_values.inspect
     return false unless arr_values.include?(10)
     return false unless arr_values.include?(11)
     return false unless arr_values.include?(12)
@@ -226,16 +182,6 @@ class Hand < ApplicationRecord
       return false if (arr_values[2] - arr_values[1]) != 1
       return false if (arr_values[1] - arr_values[0]) != 1
 
-      # arr_values.reverse!
-      # n = 0
-      # for i in arr_values do 
-      #   if n != 0
-      #     return false if arr_values[n] - arr_values[n-1] == 0
-      #   end
-      #     n = n + 1
-      #   # end  
-      # end
-      # true
     end
     true
   end
