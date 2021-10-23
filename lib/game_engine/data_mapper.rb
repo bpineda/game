@@ -1,5 +1,6 @@
 module GameEngine
   class DataMapper
+
     def self.import_hand raw_data
       arr_cards = raw_data.split
       puts arr_cards.inspect
@@ -12,17 +13,14 @@ module GameEngine
         n = n + 1
       end
     end
+
     def self.import_card raw_card_value, hand, round
       card = Card.new
-      # hand = Hand.create
-      puts raw_card_value
       card.import( raw_card_value, hand )
     end
 
     def self.import_card_in_memory raw_card_value, hand, round
       card = Card.new
-      # hand = Hand.create
-      # puts raw_card_value
       card.memory_import( raw_card_value, hand )
     end
 
@@ -39,32 +37,13 @@ module GameEngine
     end
 
 
-    def self.bla
-      "QWERTYU"
-    end
-
     def self.memory_import
       data = []
       data = { rounds: [], players: '123'}
       n = 1
       File.foreach("poker.txt") do |raw_data| 
 
-        # if n == 0
-        # puts line
-        # GameEngine::DataMapper.import_hand line
-
         if n < 10
-
-          # arr_cards = raw_data.split
-          # # puts arr_cards.inspect
-          # round = Round.new
-          # n = 1
-          # hand = generate_hand_in_memory(round)
-          # arr_cards.each do | card |
-          #   hand = generate_hand_in_memory(round) if n%5 == 1 && n != 1
-          #   import_card_in_memory card, hand, round
-          #   n = n + 1
-          # end
 
 
           puts raw_data.inspect
@@ -81,17 +60,11 @@ module GameEngine
           card4 = Card.new
           card5 = Card.new
 
-          # memory_import( arr_cards[0], hand )
-
           hand.cards << card1.memory_import( arr_cards[0], hand )
           hand.cards << card2.memory_import( arr_cards[1], hand )
           hand.cards << card3.memory_import( arr_cards[2], hand )
           hand.cards << card4.memory_import( arr_cards[3], hand )
           hand.cards << card5.memory_import( arr_cards[4], hand )
-          # hand.cards << Card.new(suit: "spades", value: 5, numeric_value: 5)
-          # hand.cards << Card.new(suit: "spades", value: 6, numeric_value: 6)
-          # hand.cards << Card.new(suit: "spades", value: 8, numeric_value: 8)
-          # hand.cards << Card.new(suit: "spades", value: 9, numeric_value: 9)
           round.hands << hand
 
           hand = Hand.new
@@ -108,25 +81,19 @@ module GameEngine
           hand.cards << card8.memory_import( arr_cards[7], hand )
           hand.cards << card9.memory_import( arr_cards[8], hand )
           hand.cards << card10.memory_import( arr_cards[9], hand )
-          # hand.cards << Card.new(suit: "spades", value: 5, numeric_value: 5)
-          # hand.cards << Card.new(suit: "spades", value: 6, numeric_value: 6)
-          # hand.cards << Card.new(suit: "spades", value: 8, numeric_value: 8)
-          # hand.cards << Card.new(suit: "spades", value: 9, numeric_value: 9)
           round.hands << hand
 
           data[:rounds].push round
 
           n = n  + 1
 
-        # hand.getRank
         end
 
 
         end
-        # n = n + 1 
 
-      # end
       data
+    
     end
 
   end

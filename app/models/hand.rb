@@ -1,55 +1,55 @@
 class Hand < ApplicationRecord
   has_many :cards
   belongs_to :round
-  @@rank_value = 0
+  @rank_value = 0
   
   def getRank
-    @@rank_value = 0
+    @rank_value = 0
     if is_royal_flush?
-      @@rank_value = 900
+      @rank_value = 900
       return "Royal Flush"
     end
 
     if is_straight_flush?
-      @@rank_value = 800
+      @rank_value = 800
       return "Straight Flush" 
     end
     
     if has_four_of_a_kind?
-      @@rank_value = 700
+      @rank_value = 700
       return "Four of a Kind"
     end
     
     if is_full_house?
-      @@rank_value = 600
+      @rank_value = 600
       return "Full House" 
     end
     
     if is_flush?
-      @@rank_value = 500
+      @rank_value = 500
       return "Flush" 
     end
     
     if is_straight?
-      @@rank_value = 400
+      @rank_value = 400
       return "Straight" 
     end
     
     if has_three_of_a_kind?
-      @@rank_value = 300
+      @rank_value = 300
       return "Three of a Kind" 
     end
     
     if has_two_pairs?
-      @@rank_value = 200
+      @rank_value = 200
       return "Two pairs"
     end
 
     if has_one_pair?
-      @@rank_value = 100
+      @rank_value = 100
       return "One pair" 
     end
-    @@rank_value = 0
+    @rank_value = 0
     "High number"
   end
 
@@ -88,7 +88,7 @@ class Hand < ApplicationRecord
   end
 
   def getRankValue
-    return @@rank_value
+    return @rank_value
   end
 
   def has_one_pair?
