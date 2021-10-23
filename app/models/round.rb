@@ -37,7 +37,7 @@ class Round < ApplicationRecord
     end
 
     if first_hand_rank == "One pair" || first_hand_rank == "Two pairs"
-      if arr_numeric_pairs[0] != arr_numeric_pairs[0]
+      if arr_numeric_pairs[0] != arr_numeric_pairs[1]
         return getHighest arr_numeric_pairs
       end
       # if the values are the same, according to the rules
@@ -46,7 +46,10 @@ class Round < ApplicationRecord
     end
 
     if first_hand_rank == "Three of a Kind"
-      return getHighest arr_numeric_threes
+      if arr_numeric_threes[0] != arr_numeric_threes[1]
+        return getHighest arr_numeric_threes
+      end
+      return getHighest arr_numeric_equivalents
     end
 
   end
