@@ -1,6 +1,7 @@
 class Round < ApplicationRecord
   has_many :hands
   attr_accessor :index
+  attr_accessor :player_index_winner
   def getWinner
 
     round_meta_data = Hash.new

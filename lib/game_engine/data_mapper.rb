@@ -39,14 +39,13 @@ module GameEngine
 
     def self.memory_import
       data = []
-      data = { rounds: [], players: '123'}
+      data = { rounds: [], player_wins: [0,0]}
       n = 1
       File.foreach("poker.txt") do |raw_data| 
 
-        if n < 10
+        if n < 10000
 
 
-          puts raw_data.inspect
           arr_cards = raw_data.split
 
 
@@ -54,6 +53,7 @@ module GameEngine
           round.index = n
           hand = Hand.new
           hand.round = round
+          hand.index = 0
           card1 = Card.new
           card2 = Card.new
           card3 = Card.new
@@ -69,6 +69,7 @@ module GameEngine
 
           hand = Hand.new
           hand.round = round
+          hand.index = 1
 
           card6 = Card.new
           card7 = Card.new
@@ -82,6 +83,8 @@ module GameEngine
           hand.cards << card9.memory_import( arr_cards[8], hand )
           hand.cards << card10.memory_import( arr_cards[9], hand )
           round.hands << hand
+          round.player_index_winner = round.getWinner
+          data[:player_wins][ round.player_index_winner ] += 1
 
           data[:rounds].push round
 

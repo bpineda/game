@@ -2,6 +2,7 @@ class Hand < ApplicationRecord
   has_many :cards
   belongs_to :round
   @rank_value = 0
+  attr_accessor :index
   
   def getRank
     @rank_value = 0
