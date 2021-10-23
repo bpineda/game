@@ -93,6 +93,8 @@ class Round < ApplicationRecord
       return getHighest round_meta_data['card_numbers']
     end
 
+    # TODO: verify if there is a use case for a Royal Flush
+
   end
 
   def getHighest sorted_array
