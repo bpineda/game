@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2021_10_22_021847) do
 
   create_table "cards", force: :cascade do |t|
     t.string "suit", default: "", null: false
-    t.integer "value", null: false
     t.integer "numeric_value", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
