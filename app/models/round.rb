@@ -52,27 +52,17 @@ class Round < ApplicationRecord
       return getHighest arr_numeric_equivalents
     end
 
+    if first_hand_rank == "Straight"
+      return getHighest arr_numeric_equivalents
+    end
+
   end
 
   def getHighest sorted_array
-    # puts sorted_array.inspect
-    # puts sorted_array[0].last
-    # puts sorted_array[1].last
     first_player = sorted_array[0].pop
     second_player = sorted_array[1].pop
     getHighest(sorted_array) if (first_player == second_player )
-    # puts "Last comparison"
-    # puts first_player
-    # puts second_player
     return 0 if first_player > second_player
     1
   end
-  # get pairValues
-  #     a = [1,2,2,3,4]
-  #     b = []
-  #     a.uniq.each { |i| b.push(i) if a.count(i) == 2 }
-  #     b
- 
-
-  # end
 end

@@ -436,4 +436,34 @@ RSpec.describe Round, type: :model do
 
   end
 
+  it "has winner with 2 straight hands" do
+    
+    round = Round.new
+    hand_high = Hand.new
+    hand_high.round = round
+    hand_high.cards << Card.new(suit: "spades", value: 3, numeric_value: 3)
+    hand_high.cards << Card.new(suit: "clubs", value: 4, numeric_value: 4)
+    hand_high.cards << Card.new(suit: "diams", value: 5, numeric_value: 5)
+    hand_high.cards << Card.new(suit: "hearts", value: 6, numeric_value: 6)
+    hand_high.cards << Card.new(suit: "hearts", value: 7, numeric_value: 7)
+
+
+    second_hand_high = Hand.new
+    second_hand_high.round = round
+
+    second_hand_high.cards << Card.new(suit: "spades", value: 2, numeric_value: 2)
+    second_hand_high.cards << Card.new(suit: "clubs", value: 3, numeric_value: 3)
+    second_hand_high.cards << Card.new(suit: "diams", value: 4, numeric_value: 4)
+    second_hand_high.cards << Card.new(suit: "hearts", value: 5, numeric_value: 5)
+    second_hand_high.cards << Card.new(suit: "hearts", value: 6, numeric_value: 6)
+
+    round.hands << hand_high
+    round.hands << second_hand_high
+
+
+    expect(round.getWinner).to eq 0
+
+  end
+
+
 end
