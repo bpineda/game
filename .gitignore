@@ -296,3 +296,9 @@ GitHub.sublime-settings
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/rails,ruby,rubymine,sublimetext,visualstudiocode,yarn
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

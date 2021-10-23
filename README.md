@@ -22,3 +22,14 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+To run the application and tests:
+
+* Clone this repo
+* Run docker-compose up
+* Once in the docker container, run migrations
+bin/rails db:migrate
+* Install webpacker
+bin/rails webpacker:install
+This will install node modules through yarn
+
