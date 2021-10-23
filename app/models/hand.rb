@@ -73,7 +73,7 @@ class Hand < ApplicationRecord
       arr_values = get_numeric_values_array
       arr_pairs = []
       arr_values.uniq.each { |i| arr_pairs.push(i) if arr_values.count(i) == 2 }
-      arr_pairs.sort
+      [ arr_pairs.sort.reverse[0] ]
   end
 
   def getRankValue

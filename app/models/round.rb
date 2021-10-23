@@ -36,8 +36,14 @@ class Round < ApplicationRecord
     end
 
     if first_hand_rank == "One pair" || first_hand_rank == "Two pairs"
-      # puts arr_values.inspect
-      return getHighest arr_numeric_pairs
+      # puts arr_numeric_pairs.inspect
+      if arr_numeric_pairs[0] != arr_numeric_pairs[0]
+        # puts "BLA1"
+        return getHighest arr_numeric_pairs
+      end
+      # puts "BLA2"
+      # puts arr_numeric_equivalents.inspect
+      return getHighest arr_numeric_equivalents
     end
 
   end
@@ -47,10 +53,12 @@ class Round < ApplicationRecord
     # puts sorted_array[0].last
     # puts sorted_array[1].last
     first_player = sorted_array[0].pop
-    second_player = sorted_array[0].pop
+    second_player = sorted_array[1].pop
     getHighest(sorted_array) if (first_player == second_player )
     # puts "Last comparison"
-    return 0 if first_player == second_player
+    # puts first_player
+    # puts second_player
+    return 0 if first_player > second_player
     1
   end
   # get pairValues
