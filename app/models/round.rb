@@ -56,6 +56,10 @@ class Round < ApplicationRecord
       return getHighest arr_numeric_equivalents
     end
 
+    if first_hand_rank == "Flush"
+      return getHighest arr_numeric_equivalents
+    end
+
   end
 
   def getHighest sorted_array
