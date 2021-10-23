@@ -65,11 +65,14 @@ class Hand < ApplicationRecord
     arr_values.sort!
   end
 
+  def getThreesValues
+      arr_values = get_numeric_values_array
+      arr_threes = []
+      arr_values.uniq.each { |i| arr_threes.push(i) if arr_values.count(i) == 3 }
+      arr_threes
+  end
+
   def getpairValues
-      # a = [1,2,2,3,4]
-      # b = []
-      # a.uniq.each { |i| b.push(i) if a.count(i) == 2 }
-      # b.sort
       arr_values = get_numeric_values_array
       arr_pairs = []
       arr_values.uniq.each { |i| arr_pairs.push(i) if arr_values.count(i) == 2 }

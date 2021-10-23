@@ -5,45 +5,48 @@ class Round < ApplicationRecord
 
     arr_numeric_equivalents = []
     arr_numeric_pairs = []
+    arr_numeric_threes = []
     first_hand = self.hands.first
     first_hand_rank = first_hand.getRank
     first_hand_pairs = first_hand.getpairValues
+    first_hand_threes = first_hand.getThreesValues
     arr_numeric_pairs.push first_hand_pairs
+    arr_numeric_threes.push first_hand_threes
     
-    # puts first_hand.getRankValue
-
     first_rank_value = first_hand.getRankValue 
     arr_numeric_equivalents.push first_hand.getSortedArray
 
 
     last_hand = self.hands.last
     last_hand_rank = last_hand.getRank
-    last_hand_pairs = first_hand.getpairValues
+    last_hand_pairs = last_hand.getpairValues
+    last_hand_threes = last_hand.getThreesValues
     arr_numeric_pairs.push last_hand_pairs
+    arr_numeric_threes.push last_hand_threes
     last_rank_value = last_hand.getRankValue 
     arr_numeric_equivalents.push last_hand.getSortedArray
     
-    # puts last_hand.getRankValue
-    # puts "-"*100
-    # puts first_hand_rank
 
     return 0 if first_rank_value > last_rank_value
     return 1 if first_rank_value < last_rank_value
 
-    #in case of a tie
+    # In case of a tie logic starts here:
+
     if first_hand_rank == "High number"
       return getHighest arr_numeric_equivalents
     end
 
     if first_hand_rank == "One pair" || first_hand_rank == "Two pairs"
-      # puts arr_numeric_pairs.inspect
       if arr_numeric_pairs[0] != arr_numeric_pairs[0]
-        # puts "BLA1"
         return getHighest arr_numeric_pairs
       end
-      # puts "BLA2"
-      # puts arr_numeric_equivalents.inspect
+      # if the values are the same, according to the rules
+      # we go to the next highest number and so on
       return getHighest arr_numeric_equivalents
+    end
+
+    if first_hand_rank == "Three of a Kind"
+      return getHighest arr_numeric_threes
     end
 
   end
