@@ -84,6 +84,12 @@ class Round < ApplicationRecord
       if round_meta_data['4_of_a_kind'][0] != round_meta_data['4_of_a_kind'][1]
         return getHighest round_meta_data['4_of_a_kind']
       end
+      # TODO: verify if this is a real use case
+      return getHighest round_meta_data['card_numbers']
+    end
+
+    # TODO: verify how the ace is handled
+    if first_hand_rank == "Straight Flush"
       return getHighest round_meta_data['card_numbers']
     end
 
