@@ -3,6 +3,6 @@ class HomeController < ApplicationController
 
     @data = GameEngine::DataMapper.memory_import
 
-    @round = @data
+    @round = @data[:rounds]
   end
 end

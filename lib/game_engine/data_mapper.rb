@@ -45,6 +45,7 @@ module GameEngine
 
     def self.memory_import
       data = []
+      data = { rounds: [], players: '123'}
       n = 1
       File.foreach("poker.txt") do |raw_data| 
 
@@ -52,7 +53,7 @@ module GameEngine
         # puts line
         # GameEngine::DataMapper.import_hand line
 
-        if n < 1000
+        if n < 10
 
           # arr_cards = raw_data.split
           # # puts arr_cards.inspect
@@ -113,7 +114,7 @@ module GameEngine
           # hand.cards << Card.new(suit: "spades", value: 9, numeric_value: 9)
           round.hands << hand
 
-          data.push round
+          data[:rounds].push round
 
           n = n  + 1
 
