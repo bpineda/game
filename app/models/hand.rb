@@ -49,7 +49,15 @@ class Hand < ApplicationRecord
       @@rank_value = 100
       return "One pair" 
     end
+    @@rank_value = getHighValue
     "High number"
+  end
+
+  def getHighValue
+    arr_values = get_numeric_values_array
+    arr_values.sort!
+    puts arr_values.inspect
+    arr_values.pop
   end
 
   def getRankValue
