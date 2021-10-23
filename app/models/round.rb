@@ -3,28 +3,41 @@ class Round < ApplicationRecord
   attr_accessor :index
   def getWinner
 
-    arr_numeric_equivalents = []
-    arr_numeric_pairs = []
-    arr_numeric_threes = []
+    round_meta_data = Hash.new
+
+    round_meta_data['card_numbers'] = []
+    round_meta_data['2_of_a_kind'] = []
+    round_meta_data['3_of_a_kind'] = []
+    round_meta_data['4_of_a_kind'] = []
+
     first_hand = self.hands.first
     first_hand_rank = first_hand.getRank
     first_hand_pairs = first_hand.getpairValues
     first_hand_threes = first_hand.getThreesValues
-    arr_numeric_pairs.push first_hand_pairs
-    arr_numeric_threes.push first_hand_threes
+    first_hand_fours = first_hand.getFoursValues
+
+    round_meta_data['2_of_a_kind'].push first_hand_pairs
+    round_meta_data['3_of_a_kind'].push first_hand_threes
+    round_meta_data['4_of_a_kind'].push first_hand_fours
     
     first_rank_value = first_hand.getRankValue 
-    arr_numeric_equivalents.push first_hand.getSortedArray
+    round_meta_data['card_numbers'].push first_hand.getSortedArray
 
+
+    ## Second Hand setup
 
     last_hand = self.hands.last
     last_hand_rank = last_hand.getRank
     last_hand_pairs = last_hand.getpairValues
     last_hand_threes = last_hand.getThreesValues
-    arr_numeric_pairs.push last_hand_pairs
-    arr_numeric_threes.push last_hand_threes
+    last_hand_fours = last_hand.getFoursValues
+
+    round_meta_data['2_of_a_kind'].push last_hand_pairs
+    round_meta_data['3_of_a_kind'].push last_hand_threes
+    round_meta_data['4_of_a_kind'].push last_hand_fours
+
     last_rank_value = last_hand.getRankValue 
-    arr_numeric_equivalents.push last_hand.getSortedArray
+    round_meta_data['card_numbers'].push last_hand.getSortedArray
     
 
     return 0 if first_rank_value > last_rank_value
@@ -33,38 +46,45 @@ class Round < ApplicationRecord
     # In case of a tie logic starts here:
 
     if first_hand_rank == "High number"
-      return getHighest arr_numeric_equivalents
+      return getHighest round_meta_data['card_numbers']
     end
 
     if first_hand_rank == "One pair" || first_hand_rank == "Two pairs"
-      if arr_numeric_pairs[0] != arr_numeric_pairs[1]
-        return getHighest arr_numeric_pairs
+      if round_meta_data['2_of_a_kind'][0] != round_meta_data['2_of_a_kind'][1]
+        return getHighest round_meta_data['2_of_a_kind']
       end
       # if the values are the same, according to the rules
       # we go to the next highest number and so on
-      return getHighest arr_numeric_equivalents
+      return getHighest round_meta_data['card_numbers']
     end
 
     if first_hand_rank == "Three of a Kind"
-      if arr_numeric_threes[0] != arr_numeric_threes[1]
-        return getHighest arr_numeric_threes
+      if round_meta_data['3_of_a_kind'][0] != round_meta_data['3_of_a_kind'][1]
+        return getHighest round_meta_data['3_of_a_kind']
       end
-      return getHighest arr_numeric_equivalents
+      return getHighest round_meta_data['card_numbers']
     end
 
     if first_hand_rank == "Straight"
-      return getHighest arr_numeric_equivalents
+      return getHighest round_meta_data['card_numbers']
     end
 
     if first_hand_rank == "Flush"
-      return getHighest arr_numeric_equivalents
+      return getHighest round_meta_data['card_numbers']
     end
 
     if first_hand_rank == "Full House"
-      if arr_numeric_threes[0] != arr_numeric_threes[1]
-        return getHighest arr_numeric_threes
+      if round_meta_data['3_of_a_kind'][0] != round_meta_data['3_of_a_kind'][1]
+        return getHighest round_meta_data['3_of_a_kind']
       end
-      return getHighest arr_numeric_equivalents
+      return getHighest round_meta_data['card_numbers']
+    end
+
+    if first_hand_rank == "Four of a Kind"
+      if round_meta_data['4_of_a_kind'][0] != round_meta_data['4_of_a_kind'][1]
+        return getHighest round_meta_data['4_of_a_kind']
+      end
+      return getHighest round_meta_data['card_numbers']
     end
 
   end

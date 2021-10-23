@@ -65,6 +65,14 @@ class Hand < ApplicationRecord
     arr_values.sort!
   end
 
+  def getFoursValues
+      arr_values = get_numeric_values_array
+      arr_fours = []
+      arr_values.uniq.each { |i| arr_fours.push(i) if arr_values.count(i) == 4 }
+      arr_fours
+  end
+
+
   def getThreesValues
       arr_values = get_numeric_values_array
       arr_threes = []
